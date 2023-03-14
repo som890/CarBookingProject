@@ -1,0 +1,129 @@
+<!-- <div class="container" mt-5>
+    <div class="card p-3">
+        <div class="row">
+            <div class="col-6">
+                <form #bookForm="ngForm" (ngSubmit)="bookCar(bookForm)">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Họ và tên</mat-label>
+                        <input matInput placeholder="Họ và tên" [(ngModel)]="bookingDetails.fullName" name="fullName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Địa chỉ</mat-label>
+                        <input matInput placeholder="Địa chỉ" [(ngModel)]="bookingDetails.fullAddress"
+                            name="fullAddress">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Số điện thoại</mat-label>
+                        <input matInput placeholder="Số điện thoại" [(ngModel)]="bookingDetails.contactNumber"
+                            name="contactNumber">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="bookingDetails.startDate"
+                            placeholder="Ngày thuê">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="bookingDetails.endDate"
+                            placeholder="Ngày trả">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <div align="right">
+                        <button type="submit" mat-stroked-button color="primary">Xác nhận đặt</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                Provide tools that help developers build their own custom components with common interaction patterns.
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="contaner mt-5">
+    <div class="card p-3">
+        <div class="row">
+            <div class="col-6">
+                <form #bookForm="ngForm" (ngSubmit)="bookCar(bookForm)">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Họ và tên</mat-label>
+                        <input matInput placeholder="Họ và tên" [(ngModel)]="bookingDetails.fullName" name="fullName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Địa chỉ</mat-label>
+                        <input matInput placeholder="Địa chỉ" [(ngModel)]="bookingDetails.fullAddress"
+                            name="fullAddress">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Số điện thoại</mat-label>
+                        <input matInput placeholder="Số điện thoại" [(ngModel)]="bookingDetails.contactNumber"
+                            name="contactNumber">
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" appearance="fill">
+                        <mat-label>Ngày thuê</mat-label>
+                        <input matInput [matDatepicker]="picker1" [(ngModel)]="bookingDetails.startDate" name="startDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+
+                      <mat-form-field color="accent" appearance="fill">
+                        <mat-label>Ngày trả</mat-label>
+                        <input matInput [matDatepicker]="picker2" name="endDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                      </mat-form-field>
+
+                      <div align="right">
+                        <button type="submit" mat-stroked-button color="primary">Xác nhận đặt</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>Loại xe</th>
+                            <th>Số tiền</th>
+                            <th>Số lượng xe</th>
+                            <th>Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr *ngFor="let car of carDetails">
+                            <td>{{car.model}}</td>
+                            <td>{{car.dailyRentalPrice}}</td>
+                           <td>
+                            <select #quantity 
+                                    class="form-select" 
+                                    [ngModel]="getQuantityForCar(car.id)"
+                                    (change)="onQuantityChanged(quantity.value, car.id)">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                           </td>
+                           <td>
+                            {{getCaculatedTotal(car.id, car.dailyRentalPrice)}}
+                           </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

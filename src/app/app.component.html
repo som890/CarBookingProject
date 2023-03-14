@@ -1,0 +1,63 @@
+<!-- <p>
+  <mat-toolbar color="primary">
+   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+   <mat-icon>share</mat-icon>
+ </button>
+</mat-toolbar>
+</p> -->
+
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">SomCar</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Trang chủ </a>
+        <a href="/cart" class="nav-link" routerLink="cart">Giỏ hàng</a>
+        <!-- <a href="/myBooking" class="nav-link" routerLink="myBooking">MyBoooking</a> -->
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">Trang quản trị</a>
+        <button class="btn btn-primary" routerLink="/addcar"> Thêm xe</button>
+        <button class="btn btn-primary" routerLink="/showcar"> Hiển thị xe</button>
+        <button class="btn btn-primary" routerLink="/bookingInformation">Quản lý thuê</button>
+      </li>
+      <!-- <li class="nav-item" *ngIf="showModeratorBoard">
+        <a href="/mod" class="nav-link" routerLink="mod">Trang chủ xe</a>
+      </li> -->
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a href="/user" class="nav-link"  routerLink="home">Người dùng</a>
+        <a href="/myBooking"class="nav-link"  routerLink="/myBooking">MyBoooking</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Đăng ký</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Đăng nhập</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">Đăng xuất</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
